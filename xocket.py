@@ -231,7 +231,7 @@ class xocket(object):
                 if (_packet_seq == packet_total_cnt):
                     print("flyer recevie data ok, return")
                     ''' !!!delay for a while, waitting for the serial send all the data out '''
-                    time.sleep(0.1)
+                    time.sleep(2)
                     self.receive_packet_done = True
                     
                     return True
