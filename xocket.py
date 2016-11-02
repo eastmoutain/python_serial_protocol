@@ -319,8 +319,7 @@ class xocket(object):
                     print("station send %d packets done" %(send_packet_cnt))
                     
                     self.send_packet_done = True
-                    self.send_state = SEND_PACKET_STATE_QUIT
-                    continue
+                    return True
 
                 self.send_state = SEND_PACKET_STATE_SEND
                 continue
@@ -410,7 +409,7 @@ def reply_packet(port, target_board_id, board_id, send_file_name):
             board_id, packet_type, pid = struct.unpack("3B", packet[:PACKET_OFFSET_PID+1])
             thread.start_new_thread(send_packet_thread, (xock, send_file_name, pid)) 
             cur_time = time.time()
-            wait_delay = 10.0
+            wait_delay = 20.0
             while time.time() < cur_time + wait_delay:
                 time.sleep(0.01)
                 if (xock.send_packet_is_done()):
